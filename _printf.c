@@ -1,75 +1,45 @@
 #include "main.h"
 
-void print_output(char output[], int *output_len);
-
 /**
- * _printf - The Printf Function.
- * @format: A string containing text to be printed.
- *
- * Return: The number of characters printed.
+ * _printf - function that produces output according to a format
+ * @format: format string
+ * @... : variable arguments
+ * Return: the number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	int a = 0;
-	int size_buffer = 1024;
-	int num_char = 0;
-	int printed_char = 0;
-	int format_flags = 0;
-	int field_width = 0;
-	int data_size = 0;
-	int decimal_precision = 0;
-	int output_len = 0;
-	char output[size_buffer];
+	va_list arguments;
+	int index = 0, count = 0;
 
-	if (format == NULL)
-		return (-1);
-
-	va_list args;
-
-	va_start(args, format);
-
-	while (format[a])
+	if (!format || (format[0] == '%' && format[1] == '\0'))
 	{
-		if (format[a] != '%')
+		return (-1);
+	}
+	if (format[0] == '%' && format[1] == ' ' && format[2] == '\0')
+	{
+		return (-1);
+	}
+	va_start(arguments, format);
+	for (; format[index]; index++)
+	{
+		if (format[index] == '%')
 		{
-			output[output_len++] = format[a];
-			if (output_len == size_buffer)
-			{
-				print_output(output, &output_len);
-			}
-			printed_char++;
+			index++;
+			if (format[index] == '\0')
+				return (-1);
+
+			if (format[index] == 'c')
+				count += _putchar(va_arg(arguments, int));
+			else if (format[index] == 's')
+				count += _puts(va_arg(arguments, char *));
+			else if (format[index] == '%')
+				count += _putchar('%');
+			else
+				count += _putchar('%'), count += _putchar(format[index]);
 		}
 		else
-		{
-			print_output(output, &output_len);
-			format_flags = get_flags(format, &a);
-			field_width = get_width(format, &a, args);
-			decimal_precision = get_precision(format, &a);
-			a++;
-			num_char = handle_print(format, &a, args, output, format_flags,
-					field_width, decimal_precision, size_buffer);
-
-			if (num_char == -1)
-				return (-1);
-			printed_char = printed_char + num_char;
-		}
+			count += _putchar(format[index]);
 	}
-	print_output(output, &output_len);
-	va_end(args);
-	return (printed_char);
-}
-/**
- * print_output - prints the content of the output array.
- * @output: array of characters to be printed.
- * @output_len: the total number of characters printed.
- *
- * Return: Void
- */
-void print_output(char output[], int *output_len)
-{
-	if (*output_len > 0)
-	{
-		write(1, output, *output_len);
-		*output_len = 0;
-	}
+	va_end(arguments);
+	return (count);
 }
