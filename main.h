@@ -8,5 +8,6 @@
 int _printf(const char *format, ...);
 int _putchar(char c);
 int _puts(char *str);
+int power(int base, int exponent)
 
 #endif
