@@ -27,11 +27,17 @@ int _printf(const char *format, ...)
 			index++;
 			if (format[index] == '\0')
 				return (-1);
-
 			if (format[index] == 'c')
 				count += _putchar(va_arg(arguments, int));
 			else if (format[index] == 's')
-				count += _puts(va_arg(arguments, char *));
+			{
+				char *s = va_arg(arguments, char *);
+
+				if (!s)
+					count += _puts("(null)");
+				else
+					 count += _puts(s);
+			}
 			else if (format[index] == '%')
 				count += _putchar('%');
 			else
