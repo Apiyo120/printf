@@ -8,6 +8,7 @@
 int _printf(const char *format, ...);
 int _printf_1(const char *format, ...);
 int _printf_2(const char *format, ...);
+int decimal_to_binary(va_list args);
 int _putchar(char c);
 int _puts(char *str);
 int power(int base, int exponent);
