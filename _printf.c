@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 			index++;
 			if (format[index] == 'c' || format[index] == 's' || format[index] == 'd'
 				|| format[index] == 'i')
-				count += (arguments, format[index]);
+				count += printFormatSpecifier(arguments, format[index]);
 			else if (format[index] == 'b')
 				count += (arguments);
 			else if (format[index] == '%')

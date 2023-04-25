@@ -7,5 +7,8 @@
 
 int _printf(const char *format, ...);
 int _putchar(char c);
+int printFormatSpecifier(va_list arguments, char specifier);
+int printString(va_list arguments);
+int printChar(va_list arguments);
 
 #endif
