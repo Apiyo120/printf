@@ -28,6 +28,8 @@ int _printf(const char *format, ...)
 				count += printFormatSpecifier(arguments, format[index]);
 			else if (format[index] == '%')
 				count += _putchar('%');
+			else if (format[index] == 'b')
+				count += decimal_to_binary(arguments);
 			else
 			{
 				_putchar('%');
