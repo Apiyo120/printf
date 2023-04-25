@@ -23,4 +23,3 @@ int printFormatSpecifier(va_list arguments, char format)
 	}
 	return (numCharsPrinted);
 }
-
