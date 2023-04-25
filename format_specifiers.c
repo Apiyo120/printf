@@ -21,5 +21,7 @@ int printFormatSpecifier(va_list arguments, char format)
 	{
 		numCharsPrinted = numCharsPrinted + printString(arguments);
 	}
+	if (format == 'd' || format == 'i')
+		numCharsPrinted = numCharsPrinted + printNumbers(arguments);
 	return (numCharsPrinted);
 }
