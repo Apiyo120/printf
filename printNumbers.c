@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * printNumbers -function tha prints a given number
+ * printNumbers -function that prints a given number
  * @arguments: variable argument list
  *
  * Return: the number of characters printed

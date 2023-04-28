@@ -22,6 +22,24 @@ int printFormatSpecifier(va_list arguments, char format)
 		numCharsPrinted = numCharsPrinted + printString(arguments);
 	}
 	if (format == 'd' || format == 'i')
+	{
 		numCharsPrinted = numCharsPrinted + printNumbers(arguments);
+	}
+	if (format == 'u')
+	{
+		numCharsPrinted = numCharsPrinted + printUnsignedInt(arguments);
+	}
+	if (format == 'o')
+	{
+		numCharsPrinted = numCharsPrinted + printOctal(arguments);
+	}
+	if (format == 'x')
+	{
+		numCharsPrinted = numCharsPrinted + printHexa(arguments);
+	}
+	if (format == 'X')
+	{
+		numCharsPrinted = numCharsPrinted + printHexaUpper(arguments);
+	}
 	return (numCharsPrinted);
 }
